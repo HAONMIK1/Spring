@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<bean id="myorder" class="com.spring.xe2.OrderImpl"></bean>
+	<bean id="myboard" class="com.spring.xe2.BoardImpl"></bean>
+	<bean id="mylogin" class="com.spring.xe2.Login"></bean>
+	<bean id="mylogout" class="com.spring.xe2.Logout"></bean>
+	<bean id="mydao" class="com.spring.xe2.Dao"></bean>
+	<bean id="myhello" class="com.spring.xe2.Hello"></bean>
+
+	<aop:config>
+		<aop:aspect ref="mylogin" order="0">
+			<aop:before method="login" 
+			pointcut="execution(* com.spring.xe2.OrderImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="mydao" order="1">
+			<aop:before method="dao" 
+			pointcut="execution(* com.spring.xe2.OrderImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="mylogout" order="0">
+			<aop:after method="logout"
+			 pointcut="execution(* com.spring.xe2.OrderImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+	
+	
+		<aop:config>
+		<aop:aspect ref="mylogin" order="0">
+			<aop:before method="login" 
+			pointcut="execution(* com.spring.xe2.BoardImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>
+		<aop:aspect ref="mydao" order="1">
+			<aop:before method="dao" 
+			pointcut="execution(* com.spring.xe2.BoardImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	<aop:config>
+		<aop:aspect ref="mylogout" order="0">
+			<aop:after method="logout"
+			 pointcut="execution(* com.spring.xe2.BoardImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+
+</beans>
+
+<!-- 
+aspect : 공통사항
+pointcut : 어디에
+advice : 언제
+joinpoint : pointcut의 후보
+-->

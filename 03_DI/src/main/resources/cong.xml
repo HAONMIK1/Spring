@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Person per = new Person("설현",30,168);
+	 Student stu = new Student(); 
+		stu.setKor(70); stu.setEng(80); stu.setPer(per); 
+		
+		myInfo my =new myInfo(); 
+		my.setStu(stu); my.setPer(per); -->
+	
+	<bean id="per" class="myPkg2.PersonImpl" c:name="설현" c:age="30" c:height="168"/>
+	<!-- <bean id="per" class="myPkg2.PersonImpl">
+		<constructor-arg>
+			<value type="java.lang.String">설현</value>
+		</constructor-arg>
+
+		<constructor-arg>
+			<value type="java.lang.Integer">30</value>
+		</constructor-arg>
+
+		<constructor-arg>
+			<value type="java.lang.Integer">168</value>
+		</constructor-arg>
+	</bean> -->
+
+
+
+
+	<bean id="stu" class="myPkg2.Studentimpl" p:per-ref="per" p:kor="70" p:eng="80"/>
+	<!-- <bean id="stu" class="myPkg2.Studentimpl">
+		<property name="kor">
+			<value>70</value>
+		</property>
+
+		<property name="eng">
+			<value>80</value>
+		</property>
+
+		<property name="per">
+				<ref bean="per"/>
+		</property>
+
+	</bean> -->
+
+
+	<bean id="my" class="myPkg2.MyInfo" p:per-ref="per" p:stu-ref="stu"/>
+<!-- 	<bean id="my" class="myPkg2.MyInfo">
+		<property name="per">
+			<ref bean="per"/>
+		</property>
+		<property name="stu">
+			<ref bean="stu"/>
+		</property>
+
+	</bean> -->
+
+</beans>

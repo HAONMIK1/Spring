@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+		Point point = new PointImpl();
+		point.setXpos(3.0);//setter 통한 주입 (injection)
+		point.setYpos(4.0); 
+		
+	<bean id="point" class="myPkg1"> 
+		<property name="xpos">
+			 <value type="double"3>.0</value>
+		</property>
+		<property name="ypos">
+			<value >4.0</value>
+		</property>
+	</bean>
+	
+	<bean id="circle" class="sample3.CircleImpl">	Circle circle = (Circle)factory.getBean("circle");
+			<constructor-arg>
+				<value type="double">10.0</value>
+			</constructor-arg>
+			
+			<constructor-arg>
+				<ref bean="point"/>
+			</constructor-arg>
+	</bean> -->
+	<bean id="c" class="myPkg1.CalcBeanImpl1" p:su1="10" c:su2="5"  /> <!-- p=>property  p 불러오려면 Namespaces -->
+	<bean id="m" class="myPkg1.MessageBeanImpl" p:greeting="안뇽" c:name="na"/> 	
+		
+<!-- 	<bean id="c" class="myPkg1.CalcBeanImpl1"> 
+		<property name="su1">
+			 <value>10</value>
+		</property>
+		<constructor-arg>
+				<value>5</value>
+			</constructor-arg>
+	</bean>
+	<bean id="m" class="myPkg1.MessageBeanImpl"> 
+		<property name="greeting">
+			 <value>안뇽</value>
+		</property>
+		<constructor-arg>
+				<value>na</value>
+			</constructor-arg>
+	</bean> -->
+	
+</beans>

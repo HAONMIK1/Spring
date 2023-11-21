@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="album.AlbumBean">
+	<select id="getAlbumList"  resultType="Myalbum" >
+		select * from albums 
+		<if test="whatColumn == 'title'"> <!-- 동정커리 -->
+		where title like #{keyword} 
+		</if>
+		<if test="whatColumn == 'singer'">
+		where singer like #{keyword}
+		</if>
+		order by num 
+	</select>
+	<insert id="AlbumInsert"  parameterType="Myalbum">
+			insert into albums values(albums_seq.nextval,#{title},#{singer},#{price},#{day})
+	</insert>
+	
+	<delete id="AlbumDelete">
+			delete from albums where num = #{num}
+	</delete>	
+	
+	<select id="getAlbumOne"  resultType="Myalbum" ><!-- SqlMapConfig.xml 에서 별칭 설정한거  album.model.AlbumBean 대신에 사용-->
+			select * from albums where num=#{num}
+	</select>
+	
+	<update id="AlbumUpdate"  parameterType="album.model.AlbumBean">
+			update albums set title=#{title},singer=#{singer},price=#{price},day=#{day} where num=#{num}
+	</update>
+	
+	<select id="getTotalCount"  resultType="java.lang.Integer" >
+			select count(*) from albums 
+			<if test="whatColumn == 'title'"> <!-- 동정커리 -->
+			where title like #{keyword} 
+			</if>
+			<if test="whatColumn == 'singer'">
+			where singer like #{keyword}
+			</if>
+	</select>
+</mapper>	
+	
+<!-- album.xml -->

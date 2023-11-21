@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 
+		Point point = new PointImpl();
+		point.setXpos(3.0);//setter 통한 주입 (injection)
+		point.setYpos(4.0); -->
+		
+	<bean id="point" class="sample3.PointImpl"> 
+		<property name="xpos">
+			 <value type="double"3>.0</value>
+		</property>
+		<property name="ypos">
+			<value >4.0</value>
+		</property>
+	</bean>
+	
+	<bean id="circle" class="sample3.CircleImpl">	<!-- Circle circle = (Circle)factory.getBean("circle"); -->
+			<constructor-arg>
+				<value type="double">10.0</value>
+			</constructor-arg>
+			
+			<constructor-arg>
+				<ref bean="point"/>
+			</constructor-arg>
+	</bean>
+</beans>
